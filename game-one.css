@@ -1,0 +1,1577 @@
+/* Basic reset for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+canvas {
+    display: block;
+    background-color: skyblue;
+}
+
+#youtubeMusicPopup {
+    z-index: 2000; /* Make sure it's higher than other elements */
+}
+@keyframes popupSlideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.popup-container.visible {
+    display: flex; /* Show popups when visible */
+}
+.play-button .play-icon {
+    width: 30px; /* Set the width of the image */
+    height: 30px; /* Maintain aspect ratio */
+    display: block; /* Remove any extra space below the image */
+}
+
+.play-button:hover .play-icon {
+    opacity: 0.8; /* Optional: slightly dim the image on hover */
+}
+    .popup-container {
+        display: none;
+        /* Other styles */
+    }
+p{
+    color: white;
+    font-size: 20px;
+    margin-top: 40px;
+
+}
+h4{
+    margin-top: 20px;
+}
+
+/* Overlay styling */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Darker overlay for better contrast */
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    z-index: 5; /* Ensure it appears above the canvas but below the pause button */
+
+}
+/* Styling for Popup Container */
+.popup-container {
+    background: linear-gradient(135deg, #f6d365, #fda085, #fbc2eb, #e6dee9, #f1c0c0); /* Elegant pastel gradient */
+    border-radius: 20px;
+    padding: 40px 60px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 500px;
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    animation: popupSlideIn 0.6s ease-out, popupFadeIn 0.6s ease-out;
+}
+
+.popup-container.visible {
+    display: flex; /* Show popups when visible */
+}
+
+/* Keyframes for Popup Animations */
+@keyframes popupSlideIn {
+    from {
+        transform: translate(-50%, -60%); /* Start position above center */
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        transform: translate(-50%, -50%); /* End position at center */
+        opacity: 1; /* End visible */
+    }
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        opacity: 1; /* End visible */
+    }
+}
+
+/* Popup Content Styling */
+.popup-content {
+    margin-top: 20px;
+}
+
+.popup-content p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+/* Popup Button Styling */
+
+/* Enhanced Styling for Record Popup */
+/* Popup container styling */
+#recordPopup {
+    background: linear-gradient(135deg, #FFB6C1, #FF9A9E, #FAD0C4, #FAD0C4, #F3E3E0);
+
+    border-radius: 20px; /* Rounded corners for a softer look */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    padding: 40px 60px; /* Spacious padding */
+    max-width: 90%; /* Ensure the popup doesn’t overflow */
+    width: 500px; /* Set a fixed width */
+    margin: 0 auto; /* Center horizontally */
+    position: absolute; /* Center vertically */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+    text-align: center; /* Center the content */
+    z-index: 10; /* Layer above other elements */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth appearance */
+}
+#recordPopup .video-container img {
+    max-width: 90%; /* Limit the maximum width of the image */
+    height: 300px; /* Maintain aspect ratio */
+    border-radius: 15px; /* Rounded corners for a softer look */
+    box-shadow: none; /* Shadow for depth */
+    border: none; /* Border for better separation from the background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Styling for Game Over Popup */
+#gameOverPopup {
+    background: linear-gradient(135deg, #00c6ff, #0072ff); /* Cool, energetic gradient */
+    border-radius: 20px; /* Rounded corners for a friendly look */
+    padding: 50px; /* Generous padding for a spacious feel */
+    color: #ffffff; /* White text for clear contrast */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Soft shadow for depth */
+    max-width: 90%; /* Responsive width */
+    width: 500px; /* Consistent width */
+    position: absolute;
+    z-index: 1000; /* Ensure it's above other elements */
+    display: none; /* Hidden by default */
+    transform: translate(-50%, -50%); /* Centered positioning */
+    left: 50%;
+    top: 50%;
+    text-align: center; /* Centered text */
+    animation: popupSlideIn 0.6s ease-out, popupFadeIn 0.6s ease-out; /* Smooth animations */
+}
+/* Specific styling for the YouTube Music popup */
+#youtubeMusicPopup .popup-content {
+    width: 80%; /* Wider than other popups */
+    max-width: 800px; /* Maximum width */
+}
+
+#youtubeMusicPopup iframe {
+    width: 100%; /* Full width of the popup content */
+    height: 450px; /* Adjust height as needed */
+}
+
+/* Keyframes for Popup Animations */
+@keyframes popupSlideIn {
+    from {
+        transform: translate(-50%, -60%); /* Start above center */
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        transform: translate(-50%, -50%); /* End at center */
+        opacity: 1; /* End visible */
+    }
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0; /* Start invisible */
+    }
+    to {
+        opacity: 1; /* End visible */
+    }
+}
+
+/* Styling for AI-Inspired Popup Buttons */
+.popups-button {
+    background: linear-gradient(135deg, #3a1c71, #d76d77); /* Vibrant gradient from deep purple to pink */
+    color: #ffffff; /* White text for high contrast */
+    border: none; /* No border for a streamlined appearance */
+    border-radius: 302px; /* Rounded corners for a sleek look */
+    padding: 8px 10px;
+    text-align: center; /* Balanced padding for comfort */
+    font-size: 16px; /* Slightly smaller font size for a refined look */
+    font-weight: bold; /* Bold text to stand out */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition effects */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Subtle 3D effect */
+    margin: 10px; /* Space around buttons */
+    text-transform: uppercase; /* Uppercase text for emphasis */
+    letter-spacing: 1px; /* Slightly spaced letters for readability */
+    outline: none; /* Remove default outline */
+    position: relative; /* Relative positioning for pseudo-elements */
+    overflow: hidden; /* Hide overflow for pseudo-elements */
+}
+
+/* Hover state for AI-Inspired Popup Buttons */
+.popups-button:hover {
+    background: linear-gradient(135deg, #d76d77, #3a1c71); /* Inverted gradient on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Enhanced shadow for lift effect */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active state for AI-Inspired Popup Buttons */
+.popups-button:active {
+    background: linear-gradient(135deg, #b23a48, #4a148c); /* Darker gradient on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Pseudo-element for futuristic effect */
+.popups-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+/* Hover effect on pseudo-element */
+.popups-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+.popups-button img {
+    width: 25px; /* Adjust the width as needed */
+    height: 25px; /* Adjust the height as needed */
+    display: block; /* Remove inline space below the image */
+}
+.popup-button {
+    background: linear-gradient(135deg, #3a1c71, #d76d77); /* Vibrant gradient from deep purple to pink */
+    color: #ffffff; /* White text for high contrast */
+    border: none; /* No border for a streamlined appearance */
+    border-radius: 30px; /* Rounded corners for a sleek look */
+    padding: 12px 30px; /* Balanced padding for comfort */
+    font-size: 16px; /* Slightly smaller font size for a refined look */
+    font-weight: bold; /* Bold text to stand out */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition effects */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Subtle 3D effect */
+    margin: 10px; /* Space around buttons */
+    text-transform: uppercase; /* Uppercase text for emphasis */
+    letter-spacing: 1px; /* Slightly spaced letters for readability */
+    outline: none; /* Remove default outline */
+    position: relative; /* Relative positioning for pseudo-elements */
+    overflow: hidden; /* Hide overflow for pseudo-elements */
+}
+
+/* Hover state for AI-Inspired Popup Buttons */
+.popup-button:hover {
+    background: linear-gradient(135deg, #d76d77, #3a1c71); /* Inverted gradient on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Enhanced shadow for lift effect */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active state for AI-Inspired Popup Buttons */
+.popup-button:active {
+    background: linear-gradient(135deg, #b23a48, #4a148c); /* Darker gradient on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Pseudo-element for futuristic effect */
+.popup-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+/* Hover effect on pseudo-element */
+.popup-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+/* Styling for motivational text */
+#gameOverPopup p {
+    font-size: 20px; /* Slightly larger font for emphasis */
+    margin: 20px 0; /* Space around the text */
+}
+
+#gameOverPopup #finalScore {
+    font-size: 24px; /* Larger font for the score */
+    font-weight: bold; /* Bold score text */
+    color: #ffffff; /* White color for score */
+}
+
+
+/* Popup animation keyframes */
+@keyframes popupSlideIn {
+    from {
+        transform: translate(-50%, -60%);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#scoreContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    background-color: rgba(39, 46, 46, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 0 0 0 20px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+    z-index: 10;
+}
+
+/* Hide the container when it's in the 'hidden' state */
+#scoreContainer.hidden {
+    transform: translateX(100%);
+}
+
+/* Pause Button Styling */
+#pauseButton {
+    position: fixed;
+    top: 30px;
+    left: 91%;
+    background-color: hsla(0, 7%, 46%, 0.5);
+    color: white;
+    border: .003px solid gray;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 124px;
+    cursor: pointer;
+    z-index: 12;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* Hover state for Pause Button */
+#pauseButton:hover {
+    background: #404040;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Active state for Pause Button */
+#pauseButton:active {
+    background: linear-gradient(135deg, #d84315, #ff6f00);
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Toggle Score Button Styling */
+#toggleScoreButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff6f61, #de64d1, #6a89cc, #4caf50);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 15;
+}
+
+/* Hover state for Toggle Score Button */
+#toggleScoreButton:hover {
+    background: linear-gradient(135deg, #e85d75, #d85c8b, #5c8dff, #3e8e41);
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Active state for Toggle Score Button */
+#toggleScoreButton:active {
+    background: linear-gradient(135deg, #c84b6e, #b05d87, #4a7bff, #2d6d3f);
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* General Button Styling */
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.youtube-button{
+    padding: 10px 20px;
+    margin-left: 50px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.spotify{
+    padding: 10px 20px;
+    margin-left: 5px;
+    border-radius: 200px;
+    margin-bottom: 10px;
+
+}
+.play-button {
+    background: linear-gradient(135deg, #ff6f61, #de64d1, #6a89cc, #4caf50);
+    color: white;
+    border: none;
+    border-radius: 100px;
+   padding: 6px 6px;
+    margin: 10px;
+    margin-left: 20px;
+    margin-top: 09px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 400px;
+}
+.play-button img {
+    width: 24px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth transform */
+    z-index: 1; /* Ensure the image is above the button background */
+}
+
+.play-button:hover {
+    background: linear-gradient(135deg, #ff6f61, #de64d1, #6a89cc, #4caf50);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.play-button:active {
+    background: linear-gradient(135deg, #e85d75, #d85c8b, #5c8dff, #3e8e41);
+    color: #fff;
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.play-button:hover {
+    background: linear-gradient(135deg, #ff6f61, #de64d1, #6a89cc, #4caf50);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.0);
+}
+
+.play-button:active {
+    background: linear-gradient(135deg, #e85d75, #d85c8b, #5c8dff, #3e8e41);
+    color: #fff;
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.plays-button {
+    background: linear-gradient(135deg, #ff6f61, #de64d1, #6a89cc, #4caf50);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    width: 120px;
+    height: 60px;
+    margin: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.plays-button:hover {
+    background: linear-gradient(135deg, #ff6f61, #de64d1, #6a89cc, #4caf50);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.plays-button:active {
+    background: linear-gradient(135deg, #e85d75, #d85c8b, #5c8dff, #3e8e41);
+    color: #fff;
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Base styling for Action Buttons */
+.action-button {
+    margin-right: 50px;
+    background: black; /* White background */
+    color: white; /* Black text */
+    border: none;
+    border-radius: 102px;
+    width: 70%; /* Rounded corners */
+    padding: 12px 34px; /* Adequate padding */
+    font-size: 16px; /* Readable font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.4s ease; /* Smooth transitions */
+    margin: 10px; /* Space between buttons */
+    outline: none; /* Remove default outline */
+    position: relative; /* For pseudo-element positioning */
+    overflow: hidden; /* Hide overflow for pseudo-element */
+    display: inline-block; /* Align buttons horizontally */
+}
+/* Active state for Action Buttons */
+.action-button:active {
+    background: #333333; /* Darker background when clicked */
+    color: #ffffff; /* White text color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+    transform: translateY(2px) scale(0.95); /* Slightly shrink and lower button */
+}
+
+/* Pseudo-element for cool hover effect */
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease, background 0.6s ease;
+    z-index: 0;
+}
+
+/* Hover effect for pseudo-element */
+.action-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Popup animation keyframes */
+@keyframes popupSlideIn {
+    from {
+        transform: translate(-50%, -60%);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@media (min-width: 601px) and (max-width: 1200px) {
+    body {
+        /* Example sizing properties */
+        font-size: 18px; /* Adjust as needed */
+        line-height: 1.6; /* Adjust as needed */
+        padding: 25px; /* Adjust as needed */
+      }
+
+    .container {
+        width: 80%;
+        padding: 30px;
+        box-sizing: border-box;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-container,
+    #recordPopup,
+    #gameOverPopup,
+    #youtubeMusicPopup {
+        padding: 20px;
+        width: 80%;
+        max-width: 80%;
+        margin: 20px auto;
+        box-sizing: border-box;
+        border-radius: 12px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-content p,
+    #gameOverPopup p {
+        font-size: 20px;
+        margin: 0 0 20px;
+    }
+
+    #gameOverPopup #finalScore {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ff5722;
+    }
+
+    #recordPopup .video-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+
+    #youtubeMusicPopup iframe {
+        width: 100%;
+        height: 300px;
+        border-radius: 12px;
+    }
+
+    button,
+    .popups-button {
+        display: block;
+        width: 100%;
+        max-width: 360px;
+        margin: 20px auto;
+        padding: 16px;
+        font-size: 20px;
+        border: none;
+        border-radius: 8px;
+        background-color: #007bff;
+        color: #ffffff;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover,
+    .popups-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .navbar {
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .nav-item {
+        display: block;
+        padding: 14px;
+        font-size: 20px;
+        color: #333;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .footer {
+        padding: 25px;
+        background-color: #ffffff;
+        text-align: center;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer .social-links a {
+        font-size: 28px;
+        margin: 0 15px;
+        color: #ffffff;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .footer .social-links a:hover {
+        color: #0056b3;
+        transform: scale(1.1);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 16px;
+        margin: 10px 0;
+        font-size: 18px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+    }
+
+    form {
+        padding: 25px;
+    }
+
+    form button {
+        padding: 16px;
+    }
+
+    .header {
+        font-size: 28px;
+        text-align: center;
+        margin: 20px 0;
+        color: #333;
+        font-weight: 700;
+    }
+
+    .content {
+        font-size: 20px;
+        padding: 0 20px;
+        color: #555;
+    }
+
+    .sidebar {
+        display: block;
+        width: 30%;
+        float: left;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .main {
+        width: 70%;
+        float: right;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* Mobile-Specific Menu Styles */
+    .menu-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        background-color: #333;
+        color: #fff;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .menu-container.show {
+        transform: translateX(0);
+    }
+
+    .menu-container nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-container nav a {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 16px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 20px;
+        border-bottom: 1px solid #444;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease, padding-left 0.2s ease;
+    }
+
+    .menu-container nav a:hover {
+        background-color: #444;
+        padding-left: 20px;
+    }
+
+    .menu-button {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 16px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .menu-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .close-menu-button {
+        display: block;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        text-align: right;
+        padding: 300px;
+        transition: color 0.3s ease;
+    }
+
+    .close-menu-button:hover {
+        color: #ccc;
+    }
+
+    #pauseButton {
+        position: fixed;
+          top: -10px;
+          left: 80%;
+          transform: translateX(-50%);
+          background-color: hsla(0, 7%, 46%, 0.5);
+          color: white;
+          border: .003px solid gray;
+          width: 100px;  
+          padding: 8px 10px;
+          border-radius: 50px;
+          font-size: 20px;
+          cursor: pointer;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 1002;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+    #pauseButton:hover {
+        position: fixed;
+        top: -10px;
+        left: 80%;
+        transform: translateX(-50%);
+        background-color: #202020;
+        color: #fff;
+        border: none;
+        width: 100px;  
+        padding: 8px 10px;
+        border-radius: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1002;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #pauseButton img {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Centering YouTube Button */
+    .youtube-button-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .youtube-button{
+        padding: 10px 10px;
+        margin-left: 5px;
+        width: 200px;
+        background-color: white;
+        color: black;
+        border-radius: 50px;
+        margin-bottom: 20px;
+    }
+    .spotify{
+        padding: 10px 20px;
+        margin-left: 5px;
+        width: 200px;
+        background-color: white;
+        color: #000000;
+        border-radius: 200px;
+        margin-bottom: 10px;
+    }
+
+    .youtube-button:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.05);
+    }
+
+    #play-btn {
+        background-color: #28a745;
+        border: none;
+        padding: 12px 24px;
+        width: auto;
+        min-width: 220px;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(135, 237, 245, 0.9);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    #play-btn img {
+        width: 24px;
+        height: 24px;
+    }
+
+    #play-btn::before {
+        content: " Game Music";
+        display: block;
+    }
+
+    /* Reload Button */
+    #checkButton {
+        background-color: white;
+        border: none;
+        padding: 15px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        width: 50;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #checkButton:hover {
+        background-color: #e0a800;
+        transform: scale(1.05);
+    }
+
+    #checkButton img {
+        width: 24px;
+        height: 24px;
+    }
+}
+/* Mobile Styles (max-width: 600px) */
+@media (max-width: 600px) {
+    body {
+        /* Example sizing properties */
+        font-size: 14px; /* Adjust as needed */
+        line-height: 1.4; /* Adjust as needed */
+        padding: 15px; /* Adjust as needed */
+      }
+    .container {
+        width: 90%;
+        padding: 20px;
+        box-sizing: border-box;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-container,
+    #recordPopup,
+    #gameOverPopup,
+    #youtubeMusicPopup {
+        padding: 20px;
+        width: 90%;
+        max-width: 90%;
+        margin: 20px auto;
+        box-sizing: border-box;
+        border-radius: 16px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .youtube-button{
+        padding: 10px 10px;
+        margin-left: 5px;
+        width: 200px;
+        background-color: white;
+        color: black;
+        border-radius: 50px;
+        margin-bottom: 20px;
+    }
+    .spotify{
+        padding: 10px 20px;
+        margin-left: 5px;
+        width: 200px;
+        background-color: white;
+        color: #000000;
+        border-radius: 200px;
+        margin-bottom: 10px;
+    }
+
+    .popup-content p,
+    #gameOverPopup p {
+        font-size: 18px;
+        margin: 0 0 20px;
+    }
+
+    #gameOverPopup #finalScore {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ff5722;
+    }
+    #toggleScoreButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        box-shadow: none;
+        transition: 0;
+        z-index: 15;
+        text-align: center; 
+        line-height: 1;
+        padding: 0; /* Remove any default padding */
+        margin: 0; /* Remove any default margin */
+        overflow: hidden; /* Prevent content overflow */
+    }
+    
+    /* Hover state for Toggle Score Button */
+    #toggleScoreButton:hover {
+        background: 0;
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Active state for Toggle Score Button */
+    #toggleScoreButton:active {
+        background: 0;
+        transform: scale(0.95);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #recordPopup .video-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+
+    #youtubeMusicPopup iframe {
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+    }
+
+    button,
+    .popups-button {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        margin: 20px auto;
+        padding: 14px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        background-color: #007bff;
+        color: #ffffff;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover,
+    .popups-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .navbar {
+        padding: 15px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .nav-item {
+        display: block;
+        padding: 12px;
+        font-size: 18px;
+        color: #333;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+    .navbar .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .footer {
+        padding: 20px;
+        background-color: #ffffff;
+        text-align: center;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer .social-links a {
+        font-size: 24px;
+        margin: 0 10px;
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .footer .social-links a:hover {
+        color: #0056b3;
+        transform: scale(1.1);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 14px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        background-color: #ffffff;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    form button {
+        padding: 14px;
+    }
+
+    .header {
+        font-size: 26px;
+        text-align: center;
+        margin: 20px 0;
+        color: #333;
+        font-weight: 700;
+    }
+
+    .content {
+        font-size: 18px;
+        padding: 0 15px;
+        color: #555;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .menu-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px;
+        height: 100%;
+        background-color: #333;
+        color: #fff;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .menu-container.show {
+        transform: translateX(0);
+    }
+
+    .menu-container nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu-container nav a {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 15px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        border-bottom: 1px solid #444;
+        box-sizing: border-box;
+        transition: background-color 0.3s ease, padding-left 0.2s ease;
+    }
+
+    .menu-container nav a:hover {
+        background-color: #444;
+        padding-left: 20px;
+    }
+
+    .menu-button {
+        display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 40px;
+        border-radius: 500px;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .menu-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .close-menu-button {
+        display: block;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        text-align: right;
+        padding: 400px;
+        transition: color 0.3s ease;
+    }
+
+    .close-menu-button:hover {
+        color: #ccc;
+    }
+
+    #pauseButton {
+      position: fixed;
+        top: -10px;
+        left: 80%;
+        transform: translateX(-50%);
+        background-color: hsla(0, 7%, 46%, 0.5);
+        color: white;
+        border: .003px solid gray;
+        width: 100px;  
+        padding: 8px 10px;
+        border-radius: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1002;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #pauseButton:hover {
+            position: fixed;
+              top: -10px;
+              left: 80%;
+              transform: translateX(-50%);
+              background-color: hsla(0, 7%, 46%, 0.5);
+              color: white;
+              border: .003px solid gray;
+              width: 100px;  
+              padding: 8px 10px;
+              border-radius: 50px;
+              font-size: 20px;
+              cursor: pointer;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              z-index: 1002;
+              transition: background-color 0.3s ease, transform 0.2s ease;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          }
+    }
+
+    #pauseButton img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .youtube-button-container {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    
+
+    #play-btn {
+        background-color: #28a745;
+        border: none;
+        padding: 10px 20px;
+        width: auto;
+        min-width: 200px;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(135, 237, 245, 0.9);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    #play-btn img {
+        width: 24px;
+        height: 24px;
+    }
+
+    #play-btn::before {
+        content: " Game Music";
+        display: block;
+    }
+  
+    #checkButton {
+        top: -20px;
+        right: 40%;
+        background-color: black;
+        border: none;
+        padding: 11px 11px;
+        width: 50px;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    #checkButton:hover {
+        background-color: #e0a800;
+        transform: scale(1.05);
+    }
+
+    #checkButton img {
+        width: 24px;
+        height: 24px;
+    }
+
+
+
+
+/* Medium Screens (min-width: 601px and max-width: 1200px) */
+@media (min-width: 601px) and (max-width: 800px) {
+    body {
+        /* Example sizing properties */
+        font-size: 16px; /* Adjust as needed */
+        line-height: 1.5; /* Adjust as needed */
+        padding: 20px; /* Adjust as needed */
+      }
+    .container {
+        width: 80%;
+        padding: 30px;
+        margin: 20px auto;
+    }
+
+    .popup-container,
+    #recordPopup,
+    #gameOverPopup,
+    #youtubeMusicPopup {
+        width: 80%;
+        max-width: 80%;
+        margin: 20px auto;
+    }
+
+    .popup-content p,
+    #gameOverPopup p {
+        font-size: 20px;
+    }
+    #toggleScoreButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        box-shadow: none;
+        transition: 0;
+        z-index: 15;
+        text-align: center; 
+        line-height: 1;
+        padding: 0; /* Remove any default padding */
+        margin: 0; /* Remove any default margin */
+        overflow: hidden; /* Prevent content overflow */
+    }
+    
+
+    #gameOverPopup #finalScore {
+        font-size: 28px;
+    }
+
+    #recordPopup .video-container img {
+        border-radius: 16px;
+    }
+
+    #youtubeMusicPopup iframe {
+        height: 220px;
+    }
+
+    button,
+    .popups-button {
+        max-width: 360px;
+        padding: 16px;
+        font-size: 20px;
+    }
+
+    .navbar {
+        padding: 20px;
+    }
+
+    .navbar .nav-item {
+        font-size: 20px;
+    }
+
+    .footer {
+        padding: 25px;
+    }
+
+    .footer .social-links a {
+        font-size: 26px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        padding: 16px;
+        font-size: 18px;
+    }
+
+    .header {
+        font-size: 28px;
+    }
+
+    .content {
+        font-size: 20px;
+    }
+
+    .sidebar {
+        display: block;
+        float: left;
+        width: 25%;
+    }
+
+    .main {
+        width: 75%;
+        float: left;
+    }
+
+    .menu-container {
+        width: 300px;
+    }
+
+    .menu-button {
+        padding: 16px;
+    }
+
+    #pauseButton {
+        position: fixed;
+          top: -10px;
+          left: 80%;
+          transform: translateX(-50%);
+          background-color: hsla(0, 7%, 46%, 0.5);
+          color: white;
+          border: .003px solid gray;
+          width: 100px;  
+          padding: 8px 10px;
+          border-radius: 50px;
+          font-size: 20px;
+          cursor: pointer;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 1002;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+    #play-btn {
+        min-width: 220px;
+        padding: 7px;
+        font-size: 22px;
+    }
+    
+    .youtube-button{
+        padding: 10px 10px;
+        margin-left: 5px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+    }
+    .spotify{
+        padding: 10px 20px;
+        margin-left: 5px;
+        border-radius: 200px;
+        margin-bottom: 10px;
+    }
+
+    #checkButton {
+        top: -20px;
+        right: 40%;
+        background-color: black;
+        border: none;
+        padding: 9px 9px;
+        width: 54px;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+}

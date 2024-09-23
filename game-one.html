@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="game-one.css">
+</head>
+<body>
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Overlay for popups -->
+    <div id="overlay">
+        <!-- Record Breaking Popup -->
+        <div id="recordPopup" class="popup-container">
+            <div class="popup-content">
+                <p id="recordPopupMessage">You broke the record!</p>
+                <button id="recordOkButton" class="popup-button">OK</button>
+            </div>
+        </div>
+
+        <!-- Game Over Popup -->
+        <div id="gameOverPopup" class="popup-container">
+            <div class="popup-content">
+                <p>Game Over</p>
+                <p>Your Score: <span id="finalScore">0</span></p>
+                <button id="restartButton" href="game-one.html" class="popup-button">Restart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Score Container with Buttons -->
+    <div id="scoreContainer">
+        <h2>novablast</h2>
+        <p>World's Highest Score: <span id="globalHighScore">3,045,000</span></p>
+        <h4>Game Music</h4>
+        <button id="play-btn" class="play-button">
+            <img src="C:\Users\k153f_qqpvs8e\OneDrive\Documents/music.png" alt="Play" class="play-icon">
+        </button>        
+  
+        <button id="youtubeButton" class="youtube-button">YouTube</button>
+        <button id="SpotifyButton" class="spotify">Spotify</button>
+        <button id="button2" class="action-button">Sign Up</button>
+        <button id="button2" class="action-button">Download App</button>
+        <button href="index.html" class="action-button">Home</button>
+    </div>
+
+    <!-- Button to toggle the visibility of the container -->
+    <button id="toggleScoreButton">⇢</button>
+
+    <!-- Pause Button -->
+    <button id="pauseButton" class="pause-button">Pause</button>
+
+    <!-- JavaScript files -->
+    <script src="Music.js"></script>
+    <script src="donut.js"></script>
+    <script src="game-one.js"></script>
+    <script src="SpotifyButton.js"></script>
+    <script src="pauseButton.js"></script>
+    <script src="reload.js"></script>
+    <script src="slide-container.js"></script>
+    <script src="touch.js"></script>
+
+    <script src="youtubeButton.js"></script>
+</body>
+</html>

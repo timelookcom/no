@@ -1,0 +1,1998 @@
+/* Root Variables */
+:root {
+    --dark-bg: hsl(210, 20%, 10%);
+    --darker-bg: hsl(210, 20%, 15%);
+    --light-bg: #ffffff;
+    --button-bg: #4a4a4a;
+    --hover-bg: #007bff;
+    --active-bg: #0056b3;
+    --text-color: #f0f0f0;
+    --border-radius: 12px;
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --shadow-dark: rgba(0, 0, 0, 0.4);
+    --transition-time: 0.3s;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 16px;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+}
+
+/* General Styles */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.menu-button {
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 250px;
+    padding: 6px 10px;
+    font-size: 23px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: fixed; /* Fixed position */
+    top: 10px;
+    left: 10px;
+    z-index: 1200; /* Ensure the menu button is above the menu */
+}
+
+.menu-button:hover {
+    background: #555;
+}
+
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Initially hidden off-screen */
+    height: 100%;
+    width: 170px; /* Adjusted width */
+    background: hsl(210, 20%, 10%);
+    color: white;
+    transform: translateX(0); /* Visible by default */
+    transition: transform 0.3s ease;
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling if content overflows */
+    z-index: 1000; /* Ensure it is above other content */
+    box-shadow: none; /* Shadow for better visibility */
+}
+.menu-container.active {
+    left: 0; /* Slide into view */
+}
+
+.menu-container h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.menu-container .close-menu-button {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: absolute;
+    top: 20px;
+    margin-bottom: 30px;
+    right: 50px;
+}
+
+.menu-container .close-menu-button:hover {
+    color: #6dfdf1; /* Red color on hover */
+
+}
+footer {
+    background: linear-gradient(180deg, 
+        rgba(0, 0, 0, 1) 0%, /* Black at the top */
+        rgba(0, 0, 50, 0.8) 40%, /* Transition to deep blue */
+        rgba(50, 0, 50, 0.8) 70%, /* Transition to dark purple */
+        rgba(0, 0, 100, 0.7) 100% /* End with deep blue-purple */
+    );
+    color: #ffffff; /* Text color for contrast */
+    height: 440px; /* Fixed height */
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Column direction */
+ /* Center content horizontally */
+    padding: 40px; /* Padding for spacing */
+    text-align: center; /* Center text */
+    box-shadow: 
+        0 20px 30px rgba(0, 0, 0, 0.8), /* Strong shadow for depth */
+        0 10px 15px rgba(0, 0, 0, 0.6); /* Subtle secondary shadow */
+}
+/* Basic styling for buttons */
+.menu-item, .menu-itemone, .menu-itemtwo {
+    background: linear-gradient(145deg, #ffffff, #f8f8f8); /* Soft, modern gradient background */
+    color: #333; /* Dark text color for readability */
+    border: none; /* No border for a cleaner look */
+    border-radius: 25px; /* Slightly rounded corners */
+    padding: 10px 16px; /* Adjusted padding for a smaller button */
+    margin-top: 22px; /* Space between buttons */
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.4s, transform 0.4s, box-shadow 0.4s, color 0.4s, filter 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Spacing between icon and text */
+    font-size: 14px; /* Smaller font size */
+    box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.15); /* Softer, more pronounced shadow */
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Enhance icon appearance */
+.menu-item i, .menu-itemone i, .menu-itemtwo i {
+    font-size: 20px; /* Optimal icon size for smaller buttons */
+    color: #555; /* Modern icon color */
+    background: #e0e0e0; /* Light icon background with subtle shadow */
+    border-radius: 50%; /* Circular background */
+    padding: 6px; /* Space around the icon */
+    transition: background 0.4s, color 0.4s, transform 0.4s;
+}
+
+/* Icon hover effect */
+.menu-item:hover i, .menu-itemone:hover i, .menu-itemtwo:hover i {
+    background: #d0d0d0; /* Slightly darker background on hover */
+    color: #333; /* Darker icon color on hover */
+    transform: rotate(360deg) scale(1.2); /* Spin and scale effect on hover */
+}
+
+/* Menu item hover effects */
+.menu-item:hover, .menu-itemtwo:hover {
+    background: linear-gradient(145deg, #f8f8f8, #e0e0e0); /* Soft gradient on hover */
+    transform: scale(1.03); /* Slight zoom effect */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    color: #111; /* Darker text color on hover */
+}
+
+/* Unique styling for menu-itemone */
+.menu-itemone {
+    background: linear-gradient(145deg, #007bff, #0056b3); /* Bold gradient background */
+    color: white; /* White text for high contrast */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.25); /* Strong shadow for prominence */
+    margin-top: 60px; /* Spacing adjustment */
+    position: relative; /* To allow for pseudo-elements */
+    overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Hover effect for menu-itemone */
+.menu-itemone:hover {
+    background: linear-gradient(145deg, #0056b3, #003d7a); /* Darker gradient on hover */
+    transform: scale(1.03) rotate(3deg); /* Zoom and rotation effect */
+    box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.35); /* Stronger shadow on hover */
+    color: #e0e0e0; /* Light text color on hover */
+}
+
+/* Additional Styles for a Polished Look */
+.menu-item:before, .menu-itemone:before, .menu-itemtwo:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 25px; /* Adjusted border radius */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    transition: opacity 0.4s, transform 0.4s;
+    opacity: 0;
+    transform: scale(1.05); /* Initial subtle scale */
+    z-index: 0;
+}
+
+.menu-item:hover:before, .menu-itemone:hover:before, .menu-itemtwo:hover:before {
+    opacity: 1;
+    transform: scale(1.1); /* Enhanced scale effect on hover */
+}
+
+/* Text shadow for a polished touch */
+.menu-item, .menu-itemone, .menu-itemtwo {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Softer text shadow for more depth */
+}
+
+/* Pulse animation for extra flair */
+.menu-item:hover, .menu-itemone:hover, .menu-itemtwo:hover {
+    animation: pulse 1s infinite; /* Apply pulse animation */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.03);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1.03);
+    }
+}
+
+.menu-info {
+    margin-top: 20px;
+    margin-bottom: 70px; /* Space above the info section */
+    padding-top: 10px; /* Space within the info section */
+    border-top: 1px solid #ddd; /* Subtle border to separate info from menu items */
+    text-align: center; /* Center-align the text */
+    font-size: 14px; /* Smaller font size for the info text */
+    color: #555; /* Text color */
+}
+/* Social Media Icons Styling */
+.social-media-icons {
+    margin-top: 10px; /* Space above the icons */
+    text-align: center; /* Center-align the icons */
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 8px; /* Space between icons */
+    font-size: 24px; /* Size of the icons */
+    background: linear-gradient(135deg, #FF0081, #7c9dac, #748cdb, #00BFFF, #275bbb); /* Mixed gradient color */
+    -webkit-background-clip: text; /* Clip gradient to text (icon) */
+    -webkit-text-fill-color: transparent; /* Make icon text transparent so gradient is visible */
+    transition: color 0.3s; /* Smooth transition for hover effects */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Hover effects */
+.social-icon:hover {
+    filter: brightness(1.2); /* Slightly brighter effect on hover */
+}
+
+
+.menu-info p {
+    margin: 8px 0; /* Space between lines of text */
+}
+
+.menu-info a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.menu-info a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+
+.menu-itemone:hover {
+    background: linear-gradient(145deg, #0056b3, #00408c); /* Darker gradient on hover */
+    box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+}
+
+/* Unique styling for menu-itemtwo */
+.menu-itemtwo {
+    margin-bottom: 36px; /* Adjusted margin for better spacing */
+}
+
+/* Custom Scrollbar Styles */
+.menu-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.menu-container::-webkit-scrollbar-thumb {
+    background: hsl(210, 20%, 10%);
+    border-radius: 4px;
+}
+
+.menu-container::-webkit-scrollbar-thumb:hover {
+    background: #5a3d3d;
+}
+
+.menu-container::-webkit-scrollbar-track {
+    background: hsl(207, 26%, 39%);
+}
+
+/* Video Container */
+.video-container {
+    border-radius: 30px;
+    position: relative;
+    margin: 20px auto;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 800px; /* Maximum width of the video container */
+    text-align: center;
+    margin-top: 100px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.play-button {
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    left: 10px;   /* Adjust the distance from the left as needed */
+    background: 0;
+    border: .09px solid gray;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.play-button.play:before {
+    content: '▶'; /* Play icon */
+}
+
+.play-button.pause:before {
+    content: '❚❚'; /* Pause icon */
+}
+
+.close-menu-button{
+    background: #404040;
+    color: white;
+    border: .00000003px solid gray;
+    font-size: 34px;
+    padding: 20px 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.close-menu-button:hover {
+    color: #c4fff5; /* Red color on hover */
+}
+
+.play-button:hover {
+    background: white;
+    color: black;
+}
+
+/* Button Section */
+.button-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between the buttons */
+    margin-bottom: 20px; /* Space below the buttons */
+}
+
+.custom-button {
+    padding: 10px 20px; /* Adjust button size */
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    font-size: 16px;
+    margin: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.custom-button:hover {
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.button-blue {
+    background: white;
+    color: black; /* Blue background */
+}
+
+.button-blue:hover {
+    background: rgb(231, 228, 228); /* Darker blue on hover */
+}
+
+.button-red {
+    background: #202020;
+    border: 0px solid gray;
+    color: white; /* Red background */
+}
+
+.button-red:hover {
+    background: #313131; /* Darker red on hover */
+
+}
+h4 {
+margin-top: 230px;               /* Remove default margin */
+color: white;            /* Text color */
+font-size: 24px;  
+margin-left: 100px; 
+margin-right: 100px;      /* Adjust font size as needed */
+text-align: center;      /* Center the text */
+}
+
+
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .menu-container {
+        width: 100%; /* Full width for mobile */
+        left: -110%; /* Initially hidden */
+        transition: left 0.3s ease;
+    }
+
+    .menu-container.active {
+        left: 0; /* Slide in */
+    }
+
+    .menu-button {
+        top: 10px;
+        left: 10px;
+        font-size: 20px; /* Adjust font size for mobile */
+    }
+
+    .menu-itemone {
+        margin-left: 0; /* Adjust margin */
+        font-size: 18px; /* Adjust font size for mobile */
+    }
+
+    .video-container {
+        width: 100%; /* Adjust width for mobile */
+        margin: 20px auto; /* Center align */
+    }
+
+    .picture-text-container {
+        flex-direction: column; /* Stack image and text vertically on mobile */
+        text-align: center; /* Center align text */
+    }
+
+    .picture-text-container .coo-picture {
+        margin: 0 auto; /* Center image */
+    }
+
+    .button-section {
+        flex-direction: column; /* Stack buttons vertically on mobile */
+        gap: 10px; /* Adjust gap */
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column; /* Stack button items vertically on mobile */
+        align-items: center; /* Center align button items */
+    }
+
+    .button-item {
+        margin-bottom: 15px; /* Space between button items */
+    }
+}
+
+header {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Center content vertically */
+    padding: 0.75rem 1.5rem;            /* Adjust padding as needed */
+    background: black; /* Background color for the header */
+}
+
+  /* Button styles */
+  .header-buttons button {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.header-buttons button:hover {
+    background: #ddd; /* Hover background color */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Sign In Button */
+.sign-in-button {
+    background: white;
+    color: black;
+    border-radius: 206px;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    margin-right: 0;
+    margin-top: 5px;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    
+}
+
+.sign-in-button:hover {
+    background: rgb(169, 236, 236);
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between; /* Space between the menu button and header buttons */
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    position: relative;
+    margin: 0 1rem;
+}
+
+.nav-button, .dropdown-button, .header-button {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-time), transform var(--transition-time), box-shadow var(--transition-time);
+}
+
+.nav-button:hover, .dropdown-button:hover, .header-button:hover {
+    background-color: var(--hover-bg);
+    box-shadow: 0 6px 12px var(--shadow-light);
+}
+
+/* Dropdown */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--darker-bg);
+    width: 200px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px var(--shadow-light);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-time), visibility var(--transition-time), transform var(--transition-time);
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.nav-item:hover .dropdown, .nav-item.active .dropdown {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(10px);
+}
+
+/* Dropdown Button */
+.dropdown-button {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    background: var(--dark-bg);
+    color: var(--text-color);
+    text-align: center;
+    font-size: var(--font-size-lg);
+    box-shadow: 0 3px 6px var(--shadow-light);
+}
+
+/* Header Buttons */
+.header-button {
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    color: var(--dark-bg);
+    border-radius: 50px;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    transition: background-color var(--transition-time), transform var(--transition-time);
+}
+
+.header-button:hover {
+    background-color: var(--hover-bg);
+    transform: scale(1.05);
+}
+
+/* Main Heading */
+h1 {
+    font-size: var(--font-size-xxl);
+    margin: 5rem auto 2rem auto;
+    text-align: center;
+    color: var(--text-color);
+    text-shadow: 2px 2px 6px var(--shadow-dark);
+    margin-bottom: 20px;
+    font-size: 40px;
+
+}
+h6.three-color-gradient-text {
+    font-size: 30px;
+    margin: 30px;
+    text-align: center;
+    background: #d4efff; /* Blue, purple, and pink */
+    -webkit-background-clip: text; /* For WebKit browsers */
+    background-clip: text; /* For other browsers */
+    -webkit-text-fill-color: transparent; /* For WebKit browsers */
+    animation: gradientShift 8s ease infinite;
+}
+
+.video-container {
+    margin: 20px 0;
+    border-radius: 15px;
+    text-align: center;
+}
+
+video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-left: 60px;
+    margin-right: 60px;
+    font-size: 40px;
+    margin-top: 0;
+}
+
+h3 {
+    font-size: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    margin-bottom: -120px;
+    margin-top: 80px;
+}
+
+/* Buttons */
+.go {
+    color: var(--dark-bg);
+    background: linear-gradient(45deg, #ffffff, #e0e0e0);
+    width: 150px;
+    height: 50px;
+    border-radius: 100px;
+    border: none;
+    font-size: var(--font-size-xl);
+    margin: 2rem auto;
+    display: block;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-light);
+    transition: background var(--transition-time), transform var(--transition-time), box-shadow var(--transition-time);
+}
+
+.go:hover {
+    background: linear-gradient(45deg, #ffffff, #d0d0d0);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px var(--shadow-dark);
+}
+
+/* Slideshow Container */
+.slideshow-wrapper {
+    position: relative;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    margin-left: 60%;
+    gap: 50px;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    width: 500px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    background: var(--light-bg);
+}
+
+.slides {
+    position: relative;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 0;
+}
+
+.slide.active {
+    display: block;
+    opacity: 1;
+}
+
+img, .cool-picture, .coo-picture {
+    transition: transform var(--transition-time);
+}
+
+img:hover, .cool-picture:hover, .coo-picture:hover {
+    transform: scale(1.05);
+}
+
+h5 {
+    font-size: 25px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    border-radius: var(--border-radius);
+}
+
+.button-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4a4a4a, #333333);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: background var(--transition-time), transform var(--transition-time), box-shadow var(--transition-time);
+    overflow: hidden;
+    box-shadow: 
+        0 8px 102px rgba(0, 0, 0, 0.5), /* Dark shadow for depth */
+}
+ /* Ensure the icon does not overflow */
+
+
+.button-icon {
+    width: 100%; /* Ensure icon covers the button-item */
+    height: 100%; /* Ensure icon covers the button-item */
+    object-fit: cover; /* Maintain aspect ratio and cover the button */
+    display: block; /* Remove any space below the image */
+}
+
+
+.button-text {
+    color: var(--light-bg);
+    text-align: center;
+}
+
+.button-item:hover {
+    background: linear-gradient(135deg, #333333, #4a4a4a);
+    transform: scale(1.1);
+}
+
+/* Picture and Text Container Styles */
+.picture-text-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10.5rem;
+    margin: 12rem auto;
+    max-width: 1000px;
+    padding: 0 10rem;
+    flex-wrap: wrap;
+}
+
+.cool-picture {
+    width: 70px;
+    height: 250px;
+    border-radius: 0;
+    box-shadow: 0 4px 80px rgba(79, 160, 156, 0.2);
+    object-fit: cover;
+    margin-top: 300px;
+    transition: transform var(--transition-time);
+}
+
+.text-container {
+    flex: 1;
+    max-width: 100%;
+    background-color: var(--dark-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: none;
+    margin-top: -40px;
+}
+
+.texttwo-container {
+    flex: 1;
+    max-width: 70%;
+    background-color: var(--dark-bg);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: none;
+    margin-top: -40px;
+}
+
+.typing-text {
+    font-size: var(--font-size-lg);
+    color: var(--text-color);
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-color);
+    width: 100%;
+    animation: typing 5s steps(40, end) 1s 1 normal both;
+}
+.typing {
+    font-size: 25px;
+    color: var(--text-color);
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-color);
+    width: 10%;
+    animation: typing 5s steps(40, end) 1s 1 normal both;
+}
+.yping {
+    font-size: 25px;
+    color: var(--text-color);
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 2px solid var(--text-color);
+    width: 330%;
+    animation: typing 5s steps(40, end) 1s 1 normal both;
+}
+
+/* Typing Animation */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.text-container, .tex-container {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    background-color: black;
+    margin-top: 100px;
+}
+.texts-container{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 70px;
+    margin-top: -140px;
+}
+
+.picture-tex-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin: 1rem auto;
+    max-width: 100px;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+}
+.picture-container {
+    display: flex;
+    text-align: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+}
+
+.coo-picture {
+    width: 350px;
+    height: 300px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 40px rgba(37, 231, 194, 0.1);
+    object-fit: cover;
+    margin-top: 2rem;
+    transition: transform var(--transition-time);
+}
+.coos-picture {
+    width: 400px;
+    height: 400px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 80px rgba(136, 21, 107, 0.3);
+    object-fit: cover;
+    margin-top: 15rem;
+    transition: transform var(--transition-time);
+}
+
+/* Base Styles for Mobile Devices */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Ensure readability on mobile */
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 0;
+        background-color: transparent; /* Corrected background color */
+        position: relative; /* Ensure position context for child elements */
+    }
+    
+    .menu-button {
+        background: transparent;
+        color: white;
+        border: 2px solid gray;
+        border-radius: 25px;
+        padding: 4px 6px;
+        font-size: 23px;
+        cursor: pointer;
+        transition: background 0.3s;
+        position: fixed; /* Fixed position */
+        top: 10px;
+        left: 10px;
+        z-index: 1200; /* Ensure the menu button is above the menu */
+    }
+
+    .header-logo {
+        max-width: 120px; /* Adjust logo size for mobile */
+        height: auto;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .nav-item {
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        font-size: 16px; /* Ensure readability */
+        text-align: center;
+    }
+    h4 {
+        margin-top: 230px;               /* Remove default margin */
+        color: white;            /* Text color */
+        font-size: 24px;  
+        margin-left: 30px; 
+        margin-right: 30px;      /* Adjust font size as needed */
+        text-align: center;      /* Center the text */
+        }
+    .header-buttons button {
+        background: black;
+        color: rgb(255, 255, 255);
+        border: 1px solid gray;
+        border-radius: 25px;
+        margin-top: -5px;
+        margin-left: 330px;
+        padding: 10px 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+ /* Basic styling for buttons */
+.menu-item, .menu-itemone, .menu-itemtwo {
+    background: linear-gradient(145deg, #000000, #1d1b1b); /* Soft, modern gradient background */
+    color: white; /* Dark text color for readability */
+    border: 0; /* No border for a cleaner look */
+    border-radius: 25px; /* Slightly rounded corners */
+    padding: 17px 16px; /* Adjusted padding for a smaller button */
+    margin-top: 32px; /* Space between buttons */
+    width: 70%;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.4s, transform 0.4s, box-shadow 0.4s, color 0.4s, filter 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Spacing between icon and text */
+    font-size: 20px; /* Smaller font size */
+    box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.15); /* Softer, more pronounced shadow */
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Enhance icon appearance */
+.menu-item i, .menu-itemone i, .menu-itemtwo i {
+    font-size: 20px; /* Optimal icon size for smaller buttons */
+    color: #555; /* Modern icon color */
+    background: #e0e0e0; /* Light icon background with subtle shadow */
+    border-radius: 50%; /* Circular background */
+    padding: 6px; /* Space around the icon */
+    transition: background 0.4s, color 0.4s, transform 0.4s;
+}
+
+/* Icon hover effect */
+.menu-item:hover i, .menu-itemone:hover i, .menu-itemtwo:hover i {
+    background: #202020; /* Slightly darker background on hover */
+    color: white; /* Darker icon color on hover */
+    transform: rotate(360deg) scale(1.2); /* Spin and scale effect on hover */
+}
+
+/* Menu item hover effects */
+.menu-item:hover, .menu-itemtwo:hover {
+    background: #202020; /* Soft gradient on hover */
+    transform: scale(1.03); /* Slight zoom effect */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    color: white; /* Darker text color on hover */
+}
+h2{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+h3{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+h1{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+h5{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+/* Unique styling for menu-itemone */
+.menu-itemone {
+    background: linear-gradient(145deg, #007bff, #0056b3); /* Bold gradient background */
+    color: white; /* White text for high contrast */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.25); /* Strong shadow for prominence */
+    margin-top: 60px; /* Spacing adjustment */
+    position: relative; /* To allow for pseudo-elements */
+    overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Hover effect for menu-itemone */
+.menu-itemone:hover {
+    background: linear-gradient(145deg, #0056b3, #003d7a); /* Darker gradient on hover */
+    transform: scale(1.03) rotate(3deg); /* Zoom and rotation effect */
+    box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.35); /* Stronger shadow on hover */
+    color: #e0e0e0; /* Light text color on hover */
+}
+
+/* Additional Styles for a Polished Look */
+.menu-item:before, .menu-itemone:before, .menu-itemtwo:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 25px; /* Adjusted border radius */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    transition: opacity 0.4s, transform 0.4s;
+    opacity: 0;
+    transform: scale(1.05); /* Initial subtle scale */
+    z-index: 0;
+}
+
+.menu-item:hover:before, .menu-itemone:hover:before, .menu-itemtwo:hover:before {
+    opacity: 1;
+    transform: scale(1.1); /* Enhanced scale effect on hover */
+}
+
+/* Text shadow for a polished touch */
+.menu-item, .menu-itemone, .menu-itemtwo {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Softer text shadow for more depth */
+}
+
+/* Pulse animation for extra flair */
+.menu-item:hover, .menu-itemone:hover, .menu-itemtwo:hover {
+    animation: pulse 1s infinite; /* Apply pulse animation */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.03);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1.03);
+    }
+}
+
+.menu-info {
+    margin-top: 20px;
+    margin-bottom: 70px; /* Space above the info section */
+    padding-top: 10px; /* Space within the info section */
+    border-top: 1px solid #ddd; /* Subtle border to separate info from menu items */
+    text-align: center; /* Center-align the text */
+    font-size: 14px; /* Smaller font size for the info text */
+    color: rgb(189, 186, 186); /* Text color */
+}
+/* Social Media Icons Styling */
+.social-media-icons {
+    margin-top: 10px; /* Space above the icons */
+    text-align: center; /* Center-align the icons */
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 8px; /* Space between icons */
+    font-size: 24px; /* Size of the icons */
+    background: linear-gradient(135deg, #FF0081, #FF8C00, #FFEF00, #00BFFF, #4B0082); /* Mixed gradient color */
+    -webkit-background-clip: text; /* Clip gradient to text (icon) */
+    -webkit-text-fill-color: transparent; /* Make icon text transparent so gradient is visible */
+    transition: color 0.3s; /* Smooth transition for hover effects */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Hover effects */
+.social-icon:hover {
+    filter: brightness(1.2); /* Slightly brighter effect on hover */
+}
+
+
+.menu-info p {
+    margin: 8px 0; /* Space between lines of text */
+}
+
+.menu-info a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.menu-info a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+
+.menu-itemone:hover {
+    background: linear-gradient(145deg, #0056b3, #00408c); /* Darker gradient on hover */
+    box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+}
+
+/* Unique styling for menu-itemtwo */
+.menu-itemtwo {
+    margin-bottom: 36px; /* Adjusted margin for better spacing */
+}
+
+    .dropdown {
+        width: 100%; /* Full width for dropdowns */
+    }
+
+    .slideshow-container {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin: 1rem 0;
+    }
+    
+.button-icon {
+    width: 100%; /* Ensure icon covers the button-item */
+    height: 100%; /* Ensure icon covers the button-item */
+    object-fit: cover; /* Maintain aspect ratio and cover the button */
+    display: block; /* Remove any space below the image */
+}
+
+    h6.three-color-gradient-text {
+        font-size: 30px;
+        margin: 30px;
+        text-align: center;
+        background: white; /* Gradient colors */
+        -webkit-background-clip: text; /* For WebKit browsers */
+        background-clip: text; /* For other browsers */
+        -webkit-text-fill-color: transparent; /* For WebKit browsers */
+        animation: gradientShift 8s ease infinite;
+    }
+
+    .button-item {
+        width: 90px;
+        height: 90px; /* Sized for touch targets */
+    }
+
+
+
+
+    .sign-in-button {
+        display: block !important; /* Ensure the sign-in button is always visible */
+        padding: 0.75rem 1.1rem;
+        font-size: 160px;
+        border-radius: 300px;
+        margin: opx; /* Space around the button */
+        background-color: #007bff; /* Adjust background color as needed */
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .cool-picture {
+        width: 300px; /* Adjust size for better fit */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 1rem;
+    }
+
+    .text-container {
+        padding: 1rem;
+        border-radius: 30px; /* Rounded corners */
+        margin-bottom: 1rem;
+    }
+  
+    .text-container h1,
+    .text-container h3,
+    .text-container p {
+        font-size: 1.6rem; /* Adjust font size for small screens */
+    }
+
+    .text-container h2 {
+        font-size: 0.9rem;
+        margin-left: 0;
+        margin-right: 0;
+        color: #32f7b5;
+    }
+
+    .picture-text-container,
+    .picture-tex-container,
+    .picture-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+.text-container, .tex-container {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-top: -140px;
+}
+
+    .video-container {
+        width: 110%;
+        padding: 0 1rem;
+    }
+
+    video {
+        width: 100%;
+        height: 400px; /* Maintain aspect ratio */
+        border-radius: 30px; /* Rounded corners */
+    }
+
+    .custom-button {
+        padding: 10px 20px; /* Adjust button size */
+        border: none;
+        border-radius: 25px; /* Rounded corners */
+        font-size: 16px;
+        margin: 10px auto; /* Center button with auto margins */
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+}
+
+/* For Very Small Screens */
+@media (max-width: 480px) {
+     body {
+        font-size: 16px; /* Ensure readability on mobile */
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 0;
+        background-color: transparent; /* Corrected background color */
+        position: relative; /* Ensure position context for child elements */
+    }
+    
+    .menu-button {
+        background: transparent;
+        color: white;
+        border: 2px solid gray;
+        border-radius: 25px;
+        padding: 4px 6px;
+        font-size: 23px;
+        cursor: pointer;
+        transition: background 0.3s;
+        position: fixed; /* Fixed position */
+        top: 10px;
+        left: 10px;
+        z-index: 1200; /* Ensure the menu button is above the menu */
+    }
+
+    .header-logo {
+        max-width: 120px; /* Adjust logo size for mobile */
+        height: auto;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .nav-item {
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        font-size: 16px; /* Ensure readability */
+        text-align: center;
+    }
+    h4 {
+        margin-top: 230px;               /* Remove default margin */
+        color: white;            /* Text color */
+        font-size: 24px;  
+        margin-left: 30px; 
+        margin-right: 30px;      /* Adjust font size as needed */
+        text-align: center;      /* Center the text */
+        }
+    .header-buttons button {
+        background: black;
+        color: rgb(255, 255, 255);
+        border: 1px solid gray;
+        border-radius: 25px;
+        margin-top: -5px;
+        margin-left: 280px;
+        padding: 10px 20px;
+        font-size: 17px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+ /* Basic styling for buttons */
+.menu-item, .menu-itemone, .menu-itemtwo {
+    background: linear-gradient(145deg, #000000, #1d1b1b); /* Soft, modern gradient background */
+    color: white; /* Dark text color for readability */
+    border: 0; /* No border for a cleaner look */
+    border-radius: 25px; /* Slightly rounded corners */
+    padding: 17px 16px; /* Adjusted padding for a smaller button */
+    margin-top: 32px; /* Space between buttons */
+    width: 70%;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.4s, transform 0.4s, box-shadow 0.4s, color 0.4s, filter 0.4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px; /* Spacing between icon and text */
+    font-size: 20px; /* Smaller font size */
+    box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.15); /* Softer, more pronounced shadow */
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Enhance icon appearance */
+.menu-item i, .menu-itemone i, .menu-itemtwo i {
+    font-size: 20px; /* Optimal icon size for smaller buttons */
+    color: #555; /* Modern icon color */
+    background: #e0e0e0; /* Light icon background with subtle shadow */
+    border-radius: 50%; /* Circular background */
+    padding: 6px; /* Space around the icon */
+    transition: background 0.4s, color 0.4s, transform 0.4s;
+}
+
+/* Icon hover effect */
+.menu-item:hover i, .menu-itemone:hover i, .menu-itemtwo:hover i {
+    background: #202020; /* Slightly darker background on hover */
+    color: white; /* Darker icon color on hover */
+    transform: rotate(360deg) scale(1.2); /* Spin and scale effect on hover */
+}
+
+/* Menu item hover effects */
+.menu-item:hover, .menu-itemtwo:hover {
+    background: #202020; /* Soft gradient on hover */
+    transform: scale(1.03); /* Slight zoom effect */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    color: white; /* Darker text color on hover */
+}
+h2{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+h3{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+h1{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+h5{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+/* Unique styling for menu-itemone */
+.menu-itemone {
+    background: linear-gradient(145deg, #007bff, #0056b3); /* Bold gradient background */
+    color: white; /* White text for high contrast */
+    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.25); /* Strong shadow for prominence */
+    margin-top: 60px; /* Spacing adjustment */
+    position: relative; /* To allow for pseudo-elements */
+    overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Hover effect for menu-itemone */
+.menu-itemone:hover {
+    background: linear-gradient(145deg, #0056b3, #003d7a); /* Darker gradient on hover */
+    transform: scale(1.03) rotate(3deg); /* Zoom and rotation effect */
+    box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.35); /* Stronger shadow on hover */
+    color: #e0e0e0; /* Light text color on hover */
+}
+
+/* Additional Styles for a Polished Look */
+.menu-item:before, .menu-itemone:before, .menu-itemtwo:before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 25px; /* Adjusted border radius */
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    transition: opacity 0.4s, transform 0.4s;
+    opacity: 0;
+    transform: scale(1.05); /* Initial subtle scale */
+    z-index: 0;
+}
+
+.menu-item:hover:before, .menu-itemone:hover:before, .menu-itemtwo:hover:before {
+    opacity: 1;
+    transform: scale(1.1); /* Enhanced scale effect on hover */
+}
+
+/* Text shadow for a polished touch */
+.menu-item, .menu-itemone, .menu-itemtwo {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Softer text shadow for more depth */
+}
+
+/* Pulse animation for extra flair */
+.menu-item:hover, .menu-itemone:hover, .menu-itemtwo:hover {
+    animation: pulse 1s infinite; /* Apply pulse animation */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.03);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1.03);
+    }
+}
+
+.menu-info {
+    margin-top: 20px;
+    margin-bottom: 70px; /* Space above the info section */
+    padding-top: 10px; /* Space within the info section */
+    border-top: 1px solid #ddd; /* Subtle border to separate info from menu items */
+    text-align: center; /* Center-align the text */
+    font-size: 14px; /* Smaller font size for the info text */
+    color: rgb(189, 186, 186); /* Text color */
+}
+/* Social Media Icons Styling */
+.social-media-icons {
+    margin-top: 10px; /* Space above the icons */
+    text-align: center; /* Center-align the icons */
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 8px; /* Space between icons */
+    font-size: 24px; /* Size of the icons */
+    background: linear-gradient(135deg, #FF0081, #FF8C00, #FFEF00, #00BFFF, #4B0082); /* Mixed gradient color */
+    -webkit-background-clip: text; /* Clip gradient to text (icon) */
+    -webkit-text-fill-color: transparent; /* Make icon text transparent so gradient is visible */
+    transition: color 0.3s; /* Smooth transition for hover effects */
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Hover effects */
+.social-icon:hover {
+    filter: brightness(1.2); /* Slightly brighter effect on hover */
+}
+
+
+.menu-info p {
+    margin: 8px 0; /* Space between lines of text */
+}
+
+.menu-info a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.menu-info a:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+
+.menu-itemone:hover {
+    background: linear-gradient(145deg, #0056b3, #00408c); /* Darker gradient on hover */
+    box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+}
+
+/* Unique styling for menu-itemtwo */
+.menu-itemtwo {
+    margin-bottom: 36px; /* Adjusted margin for better spacing */
+}
+
+    .dropdown {
+        width: 100%; /* Full width for dropdowns */
+    }
+
+    .slideshow-container {
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin: 1rem 0;
+    }
+    
+.button-icon {
+    width: 100%; /* Ensure icon covers the button-item */
+    height: 100%; /* Ensure icon covers the button-item */
+    object-fit: cover; /* Maintain aspect ratio and cover the button */
+    display: block; /* Remove any space below the image */
+}
+
+    h6.three-color-gradient-text {
+        font-size: 30px;
+        margin: 30px;
+        text-align: center;
+        background: white; /* Gradient colors */
+        -webkit-background-clip: text; /* For WebKit browsers */
+        background-clip: text; /* For other browsers */
+        -webkit-text-fill-color: transparent; /* For WebKit browsers */
+        animation: gradientShift 8s ease infinite;
+    }
+
+    .button-item {
+        width: 90px;
+        height: 90px; /* Sized for touch targets */
+    }
+
+
+
+
+    .sign-in-button {
+        display: block !important; /* Ensure the sign-in button is always visible */
+        padding: 0.75rem 1.5rem;
+        font-size: 160px;
+        border-radius: 30px;
+        margin:  0px; /* Space around the button */
+        background-color: #007bff; /* Adjust background color as needed */
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .cool-picture {
+        width: 300px; /* Adjust size for better fit */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 1rem;
+    }
+
+    .text-container {
+        padding: 1rem;
+        border-radius: 30px; /* Rounded corners */
+        margin-bottom: 1rem;
+    }
+  
+    .text-container h1,
+    .text-container h3,
+    .text-container p {
+        font-size: 1.6rem; /* Adjust font size for small screens */
+    }
+
+    .text-container h2 {
+        font-size: 0.9rem;
+        margin-left: 0;
+        margin-right: 0;
+        color: #32f7b5;
+    }
+
+    .picture-text-container,
+    .picture-tex-container,
+    .picture-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+.text-container, .tex-container {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-top: -140px;
+}
+
+    .video-container {
+        width: 110%;
+        padding: 0 1rem;
+    }
+
+    video {
+        width: 100%;
+        height: 400px; /* Maintain aspect ratio */
+        border-radius: 30px; /* Rounded corners */
+    }
+
+    .custom-button {
+        padding: 10px 20px; /* Adjust button size */
+        border: none;
+        border-radius: 25px; /* Rounded corners */
+        font-size: 16px;
+        margin: 10px auto; /* Center button with auto margins */
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+}
+/* For Very Small Screens */
+@media (max-width: 510px) {
+    body {
+       font-size: 16px; /* Ensure readability on mobile */
+       margin: 0;
+       padding: 0;
+   }
+
+   header {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       padding: 1rem;
+       border-bottom: 0;
+       background-color: transparent; /* Corrected background color */
+       position: relative; /* Ensure position context for child elements */
+   }
+   
+   .menu-button {
+       background: transparent;
+       color: white;
+       border: 2px solid gray;
+       border-radius: 25px;
+       padding: 4px 6px;
+       font-size: 23px;
+       cursor: pointer;
+       transition: background 0.3s;
+       position: fixed; /* Fixed position */
+       top: 10px;
+       left: 10px;
+       z-index: 1200; /* Ensure the menu button is above the menu */
+   }
+
+   .header-logo {
+       max-width: 120px; /* Adjust logo size for mobile */
+       height: auto;
+   }
+
+   nav {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       padding: 0.5rem 0;
+   }
+
+   .nav-item {
+       margin: 0.5rem 0;
+       padding: 0.5rem;
+       font-size: 16px; /* Ensure readability */
+       text-align: center;
+   }
+   h4 {
+       margin-top: 230px;               /* Remove default margin */
+       color: white;            /* Text color */
+       font-size: 24px;  
+       margin-left: 30px; 
+       margin-right: 30px;      /* Adjust font size as needed */
+       text-align: center;      /* Center the text */
+       }
+   .header-buttons button {
+       background: black;
+       color: rgb(255, 255, 255);
+       border: 1px solid gray;
+       border-radius: 25px;
+       margin-top: -5px;
+       margin-left: 280px;
+       padding: 10px 20px;
+       font-size: 17px;
+       cursor: pointer;
+       transition: background 0.3s, transform 0.3s;
+   }
+/* Basic styling for buttons */
+.menu-item, .menu-itemone, .menu-itemtwo {
+   background: linear-gradient(145deg, #415d5e, #3e67be); /* Soft, modern gradient background */
+   color: white; /* Dark text color for readability */
+   border: 0; /* No border for a cleaner look */
+   border-radius: 25px; /* Slightly rounded corners */
+   padding: 17px 16px; /* Adjusted padding for a smaller button */
+   margin-top: 32px; /* Space between buttons */
+   width: 70%;
+   text-align: center;
+   cursor: pointer;
+   transition: background 0.4s, transform 0.4s, box-shadow 0.4s, color 0.4s, filter 0.4s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 7px; /* Spacing between icon and text */
+   font-size: 20px; /* Smaller font size */
+   box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.15); /* Softer, more pronounced shadow */
+   position: relative; /* For pseudo-elements */
+   overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Enhance icon appearance */
+.menu-item i, .menu-itemone i, .menu-itemtwo i {
+   font-size: 20px; /* Optimal icon size for smaller buttons */
+   color: #555; /* Modern icon color */
+   background: #e0e0e0; /* Light icon background with subtle shadow */
+   border-radius: 50%; /* Circular background */
+   padding: 6px; /* Space around the icon */
+   transition: background 0.4s, color 0.4s, transform 0.4s;
+}
+
+/* Icon hover effect */
+.menu-item:hover i, .menu-itemone:hover i, .menu-itemtwo:hover i {
+   background: #202020; /* Slightly darker background on hover */
+   color: white; /* Darker icon color on hover */
+   transform: rotate(360deg) scale(1.2); /* Spin and scale effect on hover */
+}
+
+/* Menu item hover effects */
+.menu-item:hover, .menu-itemtwo:hover {
+   background: #202020; /* Soft gradient on hover */
+   transform: scale(1.03); /* Slight zoom effect */
+   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+   color: white; /* Darker text color on hover */
+}
+h2{
+   margin-left: 3px;
+   margin-right: 3px;
+}
+h3{
+   margin-left: 3px;
+   margin-right: 3px;
+}
+h1{
+   margin-left: 3px;
+   margin-right: 3px;
+}
+h5{
+   margin-left: 3px;
+   margin-right: 3px;
+}
+
+/* Unique styling for menu-itemone */
+.menu-itemone {
+   background: linear-gradient(145deg, #007bff, #0056b3); /* Bold gradient background */
+   color: white; /* White text for high contrast */
+   box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.25); /* Strong shadow for prominence */
+   margin-top: 60px; /* Spacing adjustment */
+   position: relative; /* To allow for pseudo-elements */
+   overflow: hidden; /* Ensure elements are clipped to button's rounded corners */
+}
+
+/* Hover effect for menu-itemone */
+.menu-itemone:hover {
+   background: linear-gradient(145deg, #0056b3, #003d7a); /* Darker gradient on hover */
+   transform: scale(1.03) rotate(3deg); /* Zoom and rotation effect */
+   box-shadow: 6px 12px 20px rgba(0, 0, 0, 0.35); /* Stronger shadow on hover */
+   color: #e0e0e0; /* Light text color on hover */
+}
+
+/* Additional Styles for a Polished Look */
+.menu-item:before, .menu-itemone:before, .menu-itemtwo:before {
+   content: '';
+   position: absolute;
+   top: 0; left: 0; right: 0; bottom: 0;
+   border-radius: 25px; /* Adjusted border radius */
+   background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+   transition: opacity 0.4s, transform 0.4s;
+   opacity: 0;
+   transform: scale(1.05); /* Initial subtle scale */
+   z-index: 0;
+}
+
+.menu-item:hover:before, .menu-itemone:hover:before, .menu-itemtwo:hover:before {
+   opacity: 1;
+   transform: scale(1.1); /* Enhanced scale effect on hover */
+}
+
+/* Text shadow for a polished touch */
+.menu-item, .menu-itemone, .menu-itemtwo {
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Softer text shadow for more depth */
+}
+
+/* Pulse animation for extra flair */
+.menu-item:hover, .menu-itemone:hover, .menu-itemtwo:hover {
+   animation: pulse 1s infinite; /* Apply pulse animation */
+}
+
+@keyframes pulse {
+   0% {
+       transform: scale(1.03);
+   }
+   50% {
+       transform: scale(1.08);
+   }
+   100% {
+       transform: scale(1.03);
+   }
+}
+
+.menu-info {
+   margin-top: 20px;
+   margin-bottom: 70px; /* Space above the info section */
+   padding-top: 10px; /* Space within the info section */
+   border-top: 1px solid #ddd; /* Subtle border to separate info from menu items */
+   text-align: center; /* Center-align the text */
+   font-size: 14px; /* Smaller font size for the info text */
+   color: rgb(189, 186, 186); /* Text color */
+}
+/* Social Media Icons Styling */
+.social-media-icons {
+   margin-top: 10px; /* Space above the icons */
+   text-align: center; /* Center-align the icons */
+}
+
+.social-icon {
+   display: inline-block;
+   margin: 0 8px; /* Space between icons */
+   font-size: 24px; /* Size of the icons */
+   background: linear-gradient(135deg, #FF0081, #FF8C00, #FFEF00, #00BFFF, #4B0082); /* Mixed gradient color */
+   -webkit-background-clip: text; /* Clip gradient to text (icon) */
+   -webkit-text-fill-color: transparent; /* Make icon text transparent so gradient is visible */
+   transition: color 0.3s; /* Smooth transition for hover effects */
+   text-decoration: none; /* Remove underline from links */
+}
+
+/* Hover effects */
+.social-icon:hover {
+   filter: brightness(1.2); /* Slightly brighter effect on hover */
+}
+
+
+.menu-info p {
+   margin: 8px 0; /* Space between lines of text */
+}
+
+.menu-info a {
+   color: #007bff; /* Link color */
+   text-decoration: none; /* Remove underline from links */
+}
+
+.menu-info a:hover {
+   text-decoration: underline; /* Underline on hover for links */
+}
+
+
+.menu-itemone:hover {
+   background: linear-gradient(145deg, #0056b3, #00408c); /* Darker gradient on hover */
+   box-shadow: 6px 8px 14px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+}
+
+/* Unique styling for menu-itemtwo */
+.menu-itemtwo {
+   margin-bottom: 36px; /* Adjusted margin for better spacing */
+}
+
+   .dropdown {
+       width: 100%; /* Full width for dropdowns */
+   }
+
+   .slideshow-container {
+       width: 100%;
+       height: auto; /* Maintain aspect ratio */
+   }
+
+   .button-container {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       gap: 15px;
+       margin: 1rem 0;
+   }
+   
+.button-icon {
+   width: 100%; /* Ensure icon covers the button-item */
+   height: 100%; /* Ensure icon covers the button-item */
+   object-fit: cover; /* Maintain aspect ratio and cover the button */
+   display: block; /* Remove any space below the image */
+}
+
+   h6.three-color-gradient-text {
+       font-size: 30px;
+       margin: 30px;
+       text-align: center;
+       background: white; /* Gradient colors */
+       -webkit-background-clip: text; /* For WebKit browsers */
+       background-clip: text; /* For other browsers */
+       -webkit-text-fill-color: transparent; /* For WebKit browsers */
+       animation: gradientShift 8s ease infinite;
+   }
+
+   .button-item {
+       width: 90px;
+       height: 90px; /* Sized for touch targets */
+   }
+
+
+
+
+   .sign-in-button {
+       display: block !important; /* Ensure the sign-in button is always visible */
+       padding: 0.75rem 1.5rem;
+       font-size: 160px;
+       border-radius: 30px;
+       margin:  0px; /* Space around the button */
+       background-color: #007bff; /* Adjust background color as needed */
+       color: white;
+       border: none;
+       cursor: pointer;
+       text-align: center;
+       transition: background 0.3s, transform 0.3s;
+   }
+
+   .cool-picture {
+       width: 300px; /* Adjust size for better fit */
+       height: auto; /* Maintain aspect ratio */
+       margin-bottom: 1rem;
+   }
+
+   .text-container {
+       padding: 1rem;
+       border-radius: 30px; /* Rounded corners */
+       margin-bottom: 1rem;
+   }
+ 
+   .text-container h1,
+   .text-container h3,
+   .text-container p {
+       font-size: 1.6rem; /* Adjust font size for small screens */
+   }
+
+   .text-container h2 {
+       font-size: 0.9rem;
+       margin-left: 0;
+       margin-right: 0;
+       color: #32f7b5;
+   }
+
+   .picture-text-container,
+   .picture-tex-container,
+   .picture-container {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       text-align: center;
+       padding: 1rem;
+   }
+   
+.text-container, .tex-container {
+   width: 100%;
+   max-width: 600px;
+   height: auto;
+   margin-top: -140px;
+}
+
+   .video-container {
+       width: 110%;
+       padding: 0 1rem;
+   }
+
+   video {
+       width: 100%;
+       height: 400px; /* Maintain aspect ratio */
+       border-radius: 30px; /* Rounded corners */
+   }
+
+   .custom-button {
+       padding: 10px 20px; /* Adjust button size */
+       border: none;
+       border-radius: 25px; /* Rounded corners */
+       font-size: 16px;
+       margin: 10px auto; /* Center button with auto margins */
+       font-weight: bold;
+       cursor: pointer;
+       transition: background 0.3s, transform 0.3s;
+   }
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            background-image: url("https://images.unsplash.com/photo-1693407549523-9a75912e828b?q=80&w=1637&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-position: center center;
+            background-size: cover;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 80px;
+            margin-top: 60px;
+        }
+        #backButton {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: rgba(26, 24, 24, 0.404);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            font-size: 20px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transition: background-color 0.3s;
+        }
+        #backButton:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            max-width: 100%;
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .caption {
+            margin-top: 10px;
+            font-size: 25px;
+            color: #ddd;
+        }
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            .social-icons {
+                flex-direction: row;
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                justify-content: center;
+            }
+            .social-icons a {
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                font-size: 30px;
+                margin: 0 10px;
+            }
+        }
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+        }
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .social-icons a {
+            background-color: none;
+            border: none;
+            box-shadow: none;
+            margin: 0 15px;
+            font-size: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    
+     /* Mobile Styles */
+     @media (max-width: 700px) {
+            .social-icons {
+                flex-direction: row;
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                justify-content: center;
+            }
+            .social-icons a {
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                font-size: 30px;
+                margin: 0 10px;
+            }
+        }
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+        }
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .social-icons a {
+            background-color: none;
+            border: none;
+            box-shadow: none;
+            margin: 0 15px;
+            font-size: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+         /* Mobile Styles */
+         @media (max-width: 400px) {
+            .social-icons {
+                flex-direction: row;
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                justify-content: center;
+            }
+            .social-icons a {
+                background-color: none;
+                border: none;
+                box-shadow: none;
+                font-size: 30px;
+                margin: 0 10px;
+            }
+        }
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+        }
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+        }
+        .social-icons a {
+            background-color: none;
+            border: none;
+            box-shadow: none;
+            margin: 0 15px;
+            font-size: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="backButton" onclick="goBack()">← Back</button>
+    <h1>Pick a Novablast Game.</h1>
+
+    <div class="gallery">
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page1')">
+            <img src="https://via.placeholder.com/300" alt="Image 1">
+            <div class="caption">Image 1 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page2')">
+            <img src="https://via.placeholder.com/300" alt="Image 2">
+            <div class="caption">Image 2 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page3')">
+            <img src="https://via.placeholder.com/300" alt="Image 3">
+            <div class="caption">Image 3 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page4')">
+            <img src="https://via.placeholder.com/300" alt="Image 4">
+            <div class="caption">Image 4 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page5')">
+            <img src="https://via.placeholder.com/300" alt="Image 5">
+            <div class="caption">Image 5 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page6')">
+            <img src="https://via.placeholder.com/300" alt="Image 6">
+            <div class="caption">Image 6 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page7')">
+            <img src="https://via.placeholder.com/300" alt="Image 7">
+            <div class="caption">Image 7 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page8')">
+            <img src="https://via.placeholder.com/300" alt="Image 8">
+            <div class="caption">Image 8 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page9')">
+            <img src="https://via.placeholder.com/300" alt="Image 9">
+            <div class="caption">Image 9 Description</div>
+        </div>
+        <div class="gallery-item" onclick="navigateTo('https://example.com/page10')">
+            <img src="https://via.placeholder.com/300" alt="Image 10">
+            <div class="caption">Image 10 Description</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+
+</body>
+</html>
